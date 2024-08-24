@@ -1,0 +1,24 @@
+preprocess:
+  sampling_rate:  &samplingrate  16000
+  signal_length:  &signallength  64000
+  block_size:     &blocksize 160
+  conf_threshold: 0.80
+  out_dir: ./preprocessed/
+  data_location:  /home/teaonly/dataset/CINSTR/harmonic
+  extension: "wav"
+
+model:
+  sampling_rate: *samplingrate
+  
+  num_channels:  8
+  dilations:     8
+  repeat:        3
+  kernel_size:   3
+
+  reverb_length: 8000
+
+train:
+  noise_gain:   0.001
+  scales:   [ 4096,   2048,  1024,  512,   256,  128]
+  weights:  [ 1.0,    1.0,   1.0,   1.0,   1.0,  1.0]
+  overlap:  0.75
